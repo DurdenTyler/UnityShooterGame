@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class Handgun : MonoBehaviour
+    public class Weapon : MonoBehaviour
     {
         [SerializeField] private float force = 4;
         // Для того что бы поле было видно в инспекторе делаем переменную либо public либо [SerializeField] private
@@ -11,6 +11,7 @@ namespace DefaultNamespace
         // Когда использовать то а когда это, ответ прост никогда не использовать public
         [SerializeField] private GameObject impactPrefab;
         [SerializeField] private Transform shootPoint; // Поле что будет определять направление выстрела
+        [SerializeField] private float damage = 1;
     
     
         void Update()
@@ -30,7 +31,7 @@ namespace DefaultNamespace
 
                     if (destructible != null)
                     {
-                        destructible.ReceiveDamage();
+                        destructible.ReceiveDamage(damage);
                     }
 
                     var rigidbody = hit.transform.GetComponent<Rigidbody>(); // взяли у нашего обьекта компонент RigidBody

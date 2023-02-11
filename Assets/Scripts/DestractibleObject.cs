@@ -7,9 +7,9 @@ namespace DefaultNamespace
         [SerializeField] private float hpInitial = 100;
         [SerializeField] private float hpCurrent = 100;
         
-        public void ReceiveDamage()
+        public void ReceiveDamage(float damage)
         {
-            hpCurrent -= 26f;
+            hpCurrent -= damage;
 
             if (hpCurrent < 0f)
             {

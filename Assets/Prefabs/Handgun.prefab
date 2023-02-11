@@ -114,7 +114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2282075383378330421
 Transform:
   m_ObjectHideFlags: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   force: 10
   impactPrefab: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
   shootPoint: {fileID: 4025881256728074362}
+  damage: 30
 --- !u!1 &2740455145195960025
 GameObject:
   m_ObjectHideFlags: 0
