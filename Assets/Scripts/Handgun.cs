@@ -26,15 +26,20 @@ namespace DefaultNamespace
                     Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up)); 
                     // добавление в сцену с параметрами (создать что то, где на какой точке, направление в котором он смотрит)
 
+                    var destructible = hit.transform.GetComponent<DestractibleObject>();
+
+                    if (destructible != null)
+                    {
+                        destructible.ReceiveDamage();
+                    }
+
                     var rigidbody = hit.transform.GetComponent<Rigidbody>(); // взяли у нашего обьекта компонент RigidBody
 
-                    if (rigidbody == null)
+                    if (rigidbody != null)
                     {
+                        rigidbody.AddForce(shootPoint.forward*force, ForceMode.Impulse); // применили к обьекту импульс
                         // hit.transform.gameObject.SetActive(false); отключаем обьект то есть убираем галочку
-                        return;
                     }
-                
-                    rigidbody.AddForce(shootPoint.forward*force, ForceMode.Impulse); // применили к обьекту импульс
                 }
             }
         }
