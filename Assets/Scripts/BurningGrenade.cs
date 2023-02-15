@@ -29,7 +29,8 @@ namespace DefaultNamespace
 
         void Explode()
         {
-            Instantiate(explosionEffect, transform.position, transform.rotation);
+            var explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+            Destroy(explosion, 2f);
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider i in colliders)
@@ -42,7 +43,6 @@ namespace DefaultNamespace
             }
             
             Destroy(gameObject);
-            Destroy(explosionEffect);
         }
 
     }

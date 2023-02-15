@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
@@ -9,13 +10,21 @@ namespace DefaultNamespace
         [SerializeField] private GameObject impactPrefab;
         [SerializeField] private Transform shootPoint;
         [SerializeField] private float damage = 1;
+        [SerializeField] private float spreadConfig = 0.1f;
 
 
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Physics.Raycast(shootPoint.position, shootPoint.forward, out var hit))
+
+                var randomX = Random.Range(-spreadConfig / 2, spreadConfig / 2);
+                var randomY = Random.Range(-spreadConfig / 2, spreadConfig / 2);
+
+                var spread = new Vector3(x: randomX, y: randomY, z: 0f);
+                var direction = shootPoint.forward + spread;
+
+                if (Physics.Raycast(shootPoint.position, direction, out var hit))
                 {
 
                     var impact = Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
