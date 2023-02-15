@@ -18,7 +18,8 @@ namespace DefaultNamespace
                 if (Physics.Raycast(shootPoint.position, shootPoint.forward, out var hit))
                 {
 
-                    Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+                    var impact = Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+                    Destroy(impact, 0.5f);
 
                     var destructible = hit.transform.GetComponent<DestractibleObject>();
 

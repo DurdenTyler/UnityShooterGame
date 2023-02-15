@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class ThrowAGranade : MonoBehaviour
+    public class ThrowGrenade : MonoBehaviour
     {
         [SerializeField] private float throwForce = 40;
         [SerializeField] private GameObject granadePrefab;

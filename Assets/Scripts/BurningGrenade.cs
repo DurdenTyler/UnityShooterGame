@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class Grenade : MonoBehaviour
+    public class BurningGrenade : MonoBehaviour
     {
         [SerializeField] private GameObject explosionEffect;
         [SerializeField] private float delay = 3f;
