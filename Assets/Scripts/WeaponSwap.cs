@@ -20,6 +20,9 @@ namespace DefaultNamespace
             } else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 SetWeapon(2);
+            } else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                SetWeapon(3);
             }
         }
         

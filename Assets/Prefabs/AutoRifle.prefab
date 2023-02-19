@@ -303,8 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 4
   impactPrefab: {fileID: 100002, guid: 99c73c92ac40473459640b165473206f, type: 3}
+  muzzleFlashPrefab: {fileID: 5024915942672686120, guid: 38276cb1b8333447394a2801902e0926, type: 3}
   shootPoint: {fileID: 7862018272768123056}
   damage: 150
+  spreadConfig: 0.03
 --- !u!1 &3833879354126727399
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,11 +662,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5765655524251424222}
-  m_LocalRotation: {x: -0, y: -0.6835112, z: -0, w: 0.72994006}
-  m_LocalPosition: {x: -0.6502, y: 0.0784, z: -0.0003}
+  m_LocalRotation: {x: 0, y: -0.69465834, z: 0, w: 0.71933985}
+  m_LocalPosition: {x: -0.6502005, y: 0.078400016, z: -0.00030004978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4589700273688236527}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -88, z: 0}

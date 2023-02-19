@@ -15,7 +15,7 @@ namespace DefaultNamespace
             {
                 if (Physics.Raycast(shootPoint.position, shootPoint.forward, out var hit))
                 {
-                    GameObject granade = Instantiate(granadePrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+                    GameObject granade = Instantiate(granadePrefab, shootPoint.position, Quaternion.LookRotation(hit.normal, Vector3.up));
                     var rigidbody = granade.GetComponent<Rigidbody>();
                     rigidbody.AddForce(shootPoint.forward * throwForce, ForceMode.VelocityChange);
                 }

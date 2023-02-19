@@ -8,6 +8,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private float force = 4;
         [SerializeField] private GameObject impactPrefab;
+        [SerializeField] private GameObject muzzleFlashPrefab; // эффект от выстрела
         [SerializeField] private Transform shootPoint;
         [SerializeField] private float damage = 1;
         [SerializeField] private float spreadConfig = 0.1f;
@@ -17,6 +18,11 @@ namespace DefaultNamespace
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (muzzleFlashPrefab != null)
+                {
+                    var flashEffect = Instantiate(muzzleFlashPrefab, shootPoint);
+                    Destroy(flashEffect, 0.2f);
+                }
 
                 var randomX = Random.Range(-spreadConfig / 2, spreadConfig / 2);
                 var randomY = Random.Range(-spreadConfig / 2, spreadConfig / 2);
@@ -26,7 +32,6 @@ namespace DefaultNamespace
 
                 if (Physics.Raycast(shootPoint.position, direction, out var hit))
                 {
-
                     var impact = Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
                     Destroy(impact, 0.5f);
 
