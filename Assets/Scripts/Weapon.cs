@@ -14,42 +14,52 @@ namespace DefaultNamespace
         [SerializeField] private float spreadConfig = 0.1f;
 
 
-        void Update()
+        public void Shoot()
         {
-            if (Input.GetMouseButtonDown(0))
+            CreateMuzzleEffect();
+
+            var direction = shootPoint.forward + SpreadCalculate.Calculate(spreadConfig);
+
+            if (!Physics.Raycast(shootPoint.position, direction, out var hit)) return;
+
+            SpawnImpactMethod(hit);
+
+            TryDamageDestructableObject(hit);
+
+            TryPushRigidBody(hit);
+        }
+
+        private void CreateMuzzleEffect()
+        {
+            if (muzzleFlashPrefab == null) return;
+            var flashEffect = Instantiate(muzzleFlashPrefab, shootPoint);
+                Destroy(flashEffect, 0.2f);
+        }
+
+        private void TryPushRigidBody(RaycastHit hit)
+        {
+            var rigidbody = hit.transform.GetComponent<Rigidbody>();
+
+            if (rigidbody != null)
             {
-                if (muzzleFlashPrefab != null)
-                {
-                    var flashEffect = Instantiate(muzzleFlashPrefab, shootPoint);
-                    Destroy(flashEffect, 0.2f);
-                }
-
-                var randomX = Random.Range(-spreadConfig / 2, spreadConfig / 2);
-                var randomY = Random.Range(-spreadConfig / 2, spreadConfig / 2);
-
-                var spread = new Vector3(x: randomX, y: randomY, z: 0f);
-                var direction = shootPoint.forward + spread;
-
-                if (Physics.Raycast(shootPoint.position, direction, out var hit))
-                {
-                    var impact = Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
-                    Destroy(impact, 0.5f);
-
-                    var destructible = hit.transform.GetComponent<DestractibleObject>();
-
-                    if (destructible != null)
-                    {
-                        destructible.ReceiveDamage(damage);
-                    }
-
-                    var rigidbody = hit.transform.GetComponent<Rigidbody>();
-
-                    if (rigidbody != null)
-                    {
-                        rigidbody.AddForce(shootPoint.forward*force, ForceMode.Impulse);
-                    }
-                }
+                rigidbody.AddForce(shootPoint.forward * force, ForceMode.Impulse);
             }
+        }
+
+        private void TryDamageDestructableObject(RaycastHit hit)
+        {
+            var destructible = hit.transform.GetComponent<DestractibleObject>();
+
+            if (destructible != null)
+            {
+                destructible.ReceiveDamage(damage);
+            }
+        }
+
+        private void SpawnImpactMethod(RaycastHit hit)
+        {
+            var impact = Instantiate(impactPrefab, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+            Destroy(impact, 0.5f);
         }
 
         private void OnDrawGizmos()

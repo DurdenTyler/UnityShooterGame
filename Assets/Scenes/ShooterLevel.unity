@@ -4967,6 +4967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2010428845}
   - component: {fileID: 2010428846}
+  - component: {fileID: 2010428847}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -5010,6 +5011,19 @@ MonoBehaviour:
   - {fileID: 1574469670}
   - {fileID: 1384710041}
   - {fileID: 331928533}
+--- !u!114 &2010428847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010428844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2158040f0fa45099e463c2fcf696043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponSwap: {fileID: 2010428846}
 --- !u!1 &2034227592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8976386750736981959, guid: cff8dc9bd77c54d6993b9eca8d98e2a6, type: 3}

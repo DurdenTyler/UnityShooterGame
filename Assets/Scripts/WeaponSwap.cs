@@ -7,7 +7,8 @@ namespace DefaultNamespace
     public class WeaponSwap : MonoBehaviour
     {
         [SerializeField] private GameObject[] weapons;
-
+        
+        public Weapon CurrentWeapon { get; private set; } // получить может кто угодно, изменить можно только в классе WeaponSwap
 
         private void Update()
         {
@@ -30,8 +31,11 @@ namespace DefaultNamespace
         {
             for (int i = 0; i < weapons.Length; i++)
             {
+                GameObject currentWeapon = weapons[i];
+
                 if (i == weaponNumber)
                 {
+                    CurrentWeapon = currentWeapon.GetComponent<Weapon>();
                     weapons[i].SetActive(true);
                 }
                 else
